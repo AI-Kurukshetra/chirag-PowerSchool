@@ -7,6 +7,8 @@ import { loadDashboardData } from '@/lib/data'
 import { ActivityWidget } from '@/components/activity-widget'
 import { getServerSupabase } from '@/lib/supabaseServer'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies })
   const {
