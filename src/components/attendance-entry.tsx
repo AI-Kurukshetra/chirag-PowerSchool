@@ -30,7 +30,7 @@ type LocalRow = {
   note?: string
 }
 
-export function AttendanceEntry({ data, role }: Props) {
+export function AttendanceEntry({ data, userId, role }: Props) {
   const supabase = useMemo(() => getBrowserSupabase(), [])
   const today = format(new Date(), 'yyyy-MM-dd')
 
