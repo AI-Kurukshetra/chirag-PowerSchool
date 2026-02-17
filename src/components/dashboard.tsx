@@ -28,7 +28,7 @@ export function Dashboard({ data, role }: { data: DashboardData; role: Role }) {
           title="Teachers"
           value={'—'}
           helper="From profiles"
-          accent="purple"
+          accent="blue"
           icon={<Users size={18} />}
         />
         {canSeeAttendance && (
