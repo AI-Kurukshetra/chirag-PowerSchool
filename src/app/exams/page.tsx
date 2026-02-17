@@ -17,11 +17,10 @@ export default async function ExamsPage() {
   const server = getServerSupabase()
 
   // limit data for teacher to their classes
-  let classFilter = {}
+  let teacherClassIds: string[] = []
   if (role === 'teacher') {
     const { data: tc } = await server.from('teacher_classes').select('class_id').eq('user_id', session.user.id)
-    const ids = tc?.map((t) => t.class_id) || []
-    classFilter = ids.length ? { in: ids } : {}
+    teacherClassIds = tc?.map((t) => t.class_id) || []
   }
 
   const classesRes = await server.from('classes').select('*').order('name')
@@ -35,11 +34,12 @@ export default async function ExamsPage() {
   let scores = scoresRes.data || []
 
   if (role === 'teacher') {
-    const tcClasses = new Set(classes.filter((c: any) => !classFilter.in || (classFilter as any).in?.includes(c.id)).map((c: any) => c.id))
-    classes = classes.filter((c: any) => tcClasses.has(c.id))
-    students = students.filter((s: any) => tcClasses.has(s.class_id))
-    exams = exams.filter((e: any) => tcClasses.has(e.class_id))
-    scores = scores.filter((s: any) => exams.some((e: any) => e.id === s.exam_id))
+    const tcSet = new Set(teacherClassIds)
+    classes = classes.filter((c: any) => tcSet.has(c.id))
+    students = students.filter((s: any) => tcSet.has(s.class_id))
+    exams = exams.filter((e: any) => tcSet.has(e.class_id))
+    const examIds = new Set(exams.map((e: any) => e.id))
+    scores = scores.filter((s: any) => examIds.has(s.exam_id))
   }
 
   return (
