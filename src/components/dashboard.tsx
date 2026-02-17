@@ -62,7 +62,7 @@ export function Dashboard({ data, role }: { data: DashboardData; role: Role }) {
           title="Buses"
           value="—"
           helper="Transport"
-          accent="teal"
+          accent="blue"
           icon={<BusFront size={18} />}
         />
       </div>
