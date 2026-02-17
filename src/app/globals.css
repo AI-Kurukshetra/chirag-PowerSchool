@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-midnight text-white font-body antialiased;
+}
+
+a {
+  @apply text-accent hover:underline;
+}
+
+.card {
+  @apply rounded-xl bg-twilight/70 border border-white/5 shadow-card backdrop-blur;
+}
+
+.badge {
+  @apply inline-flex items-center gap-1 px-2 py-1 text-xs rounded-full bg-white/5 border border-white/10;
+}
+
+.table-row {
+  @apply border-b border-white/5 hover:bg-white/5 transition-colors;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2a44;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c1327;
+}
