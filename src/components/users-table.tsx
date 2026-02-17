@@ -93,7 +93,7 @@ export default function UsersTable({ profiles, staffAttendance }: { profiles: Pr
     const payload = { user_id, attendance_date: today, status }
     const { error } = await supabase.from('staff_attendance').upsert(payload, { onConflict: 'user_id,attendance_date' })
     if (error) setError(error.message)
-    else setTodayAttendance((a) => ({ ...a, [user_id]: status }))
+    else setTodayAttendance((a: Record<string, string>) => ({ ...a, [user_id]: status }))
     setSaving(null)
   }
 
