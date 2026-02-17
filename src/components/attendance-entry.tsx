@@ -135,7 +135,7 @@ export function AttendanceEntry({ data, role }: Props) {
       class_id: classId,
       attendance_date: date,
       locked: lockState,
-      locked_by: lockState ? userId : null,
+      locked_by: lockState ? (data as any).userId || null : null,
     }
     const { error } = await supabase.from('attendance_locks').upsert(payload)
     if (!error) {
