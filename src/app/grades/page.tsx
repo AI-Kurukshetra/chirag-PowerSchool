@@ -61,7 +61,6 @@ export default async function GradesPage() {
         students={students || []}
         subjects={subjects || []}
         grades={grades || []}
-        role={role}
       />
     </main>
   )
